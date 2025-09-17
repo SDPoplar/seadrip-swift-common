@@ -17,7 +17,7 @@ extension Color {
         do {
             return try hex(s: s)
         } catch {
-            fatalError(error)
+            fatalError("\(error)")
         }
     }
 
@@ -31,7 +31,7 @@ extension Color {
         )
     }
         
-    private func pickVolume(hex: String) throws -> (Int, Int, Int, Int) {
+    private static func pickVolume(hex: String) throws -> (Int, Int, Int, Int) {
         guard let result = try /^#*([\dA-Fa-f]+)$/.wholeMatch(in: hex) else {
             throw HexColorException.IncorrectInputFormat
         }
@@ -50,7 +50,7 @@ extension Color {
         }
     }
 
-    private func twice(origin: String) -> String {
+    private static func twice(origin: String) -> String {
         var ret = ""
         for c in Array(origin) {
             ret += "\(c)\(c)"
