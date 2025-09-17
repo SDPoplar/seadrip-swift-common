@@ -9,7 +9,7 @@ private var _DtFmtFull: DateFormatter {
     return fmt
 }
 
-let DtFmtFull = _DtFmtFull
+public let DtFmtFull = _DtFmtFull
 
 private var _DtFmtDate: DateFormatter {
     let fmt = DateFormatter()
@@ -17,7 +17,7 @@ private var _DtFmtDate: DateFormatter {
     return fmt
 }
 
-let DtFmtDate = _DtFmtDate
+public let DtFmtDate = _DtFmtDate
 
 private var _DtFmtTime: DateFormatter {
     let fmt = DateFormatter()
@@ -25,4 +25,4 @@ private var _DtFmtTime: DateFormatter {
     return fmt
 }
 
-let DtFmtTime = _DtFmtTime
+public let DtFmtTime = _DtFmtTime
