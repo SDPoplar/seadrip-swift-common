@@ -24,10 +24,10 @@ extension Color {
     public static func hex(s: String,) throws -> Color {
         let (r, g, b, a) = try pickVolume(hex: s)
         return Color(
-            r / 255.0,
-            g / 255.0,
-            b / 255.0,
-            a / 255.0
+            red: Double(r) / 255,
+            green: Double(g) / 255,
+            blue: Double(b) / 255,
+            opacity: Double(a) / 255
         )
     }
         
@@ -58,16 +58,20 @@ extension Color {
         return ret
     }
 
-    private func hexToInt(hex: String) throws -> (Int, Int, Int, Int) {
-        do {
-            let chars:[Character] = Array(hex)
-            let r = Int(String([chars[0], chars[1]]), radix: 16)
-            let g = Int(String([chars[2], chars[3]]), radix: 16)
-            let b = Int(String([chars[4], chars[5]]), radix: 16)
-            let a = Int(String([chars[6], chars[7]]), radix: 16)
-            return (r!, g!, b!, a!)
-        } catch {
+    private static func hexToInt(hex: String) throws -> (Int, Int, Int, Int) {
+        let chars:[Character] = Array(hex)
+        guard let r = Int(String([chars[0], chars[1]]), radix: 16) else {
             throw HexColorException.TransHexFailed
         }
+        guard let g = Int(String([chars[2], chars[3]]), radix: 16) else {
+            throw HexColorException.TransHexFailed
+        }
+        guard let b = Int(String([chars[4], chars[5]]), radix: 16) else {
+            throw HexColorException.TransHexFailed
+        }
+        guard let a = Int(String([chars[6], chars[7]]), radix: 16) else {
+            throw HexColorException.TransHexFailed
+        }
+        return (r, g, b, a)
     }
 }
