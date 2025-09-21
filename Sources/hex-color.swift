@@ -17,7 +17,10 @@ extension Color {
         do {
             return try hex(s: s)
         } catch {
-            fatalError("\(error)")
+            #if DEBUG
+            assertionFailure("\(error)")
+            #endif
+            return .white
         }
     }
 
@@ -51,11 +54,7 @@ extension Color {
     }
 
     private static func twice(origin: String) -> String {
-        var ret = ""
-        for c in Array(origin) {
-            ret += "\(c)\(c)"
-        }
-        return ret
+        return Array(origin).map({c in return "\(c)\(c)"}).joined()
     }
 
     private static func hexToInt(hex: String) throws -> (Int, Int, Int, Int) {
