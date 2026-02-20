@@ -1,7 +1,7 @@
 import SwiftUI
 
 let DateFmtTpl = "yyyy-MM-dd"
-let TimeFmtTpl = "hh:mm:ss"
+let TimeFmtTpl = "HH:mm:ss"
 
 private var _DtFmtFull: DateFormatter {
     let fmt = DateFormatter()
